@@ -1,0 +1,14 @@
+<template>
+  <lightning-card variant="Narrow" title="User" icon-name="standard:user">
+    <p class="slds-var-p-horizontal_small">
+      <lightning-combobox
+        name="user"
+        label="User"
+        value={selectedUserId}
+        placeholder="Select User"
+        options={options}
+        onchange={handleChange}
+      ></lightning-combobox>
+    </p>
+  </lightning-card>
+</template>

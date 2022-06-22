@@ -1,0 +1,96 @@
+<template>
+  <article class="slds-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          <span
+            class="slds-icon_container slds-icon-standard-account"
+            title="task"
+          >
+            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+              <use
+                xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#task"
+              ></use>
+            </svg>
+            <span class="slds-assistive-text">task</span>
+          </span>
+        </div>
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">
+            <a
+              href="#"
+              class="slds-card__header-link slds-truncate"
+              title="Create new Task"
+            >
+              <span>New Task</span>
+            </a>
+          </h2>
+        </div>
+        <div class="slds-no-flex">
+          <button
+            class="slds-button slds-button_neutral"
+            onclick={onClickNotification}
+          >
+            <label>Notification</label>
+          </button>
+        </div>
+        <div class="slds-no-flex">
+          <button class="slds-button slds-button_neutral" onclick={addTask}>
+            Add Task
+          </button>
+        </div>
+      </header>
+    </div>
+    <div class="slds-card__body slds-card__body_inner">
+      <template if:true={isVisibleNotification}>
+        <p>This is Child component</p>
+        <c-created-task-notification
+          recipient={owner}
+          target-id="000000000000000AAA"
+          onmakeinvisible={hadleMakeInvisible}
+        ></c-created-task-notification>
+      </template>
+
+      <lightning-combobox
+        name="subject"
+        label="Subject"
+        value={subject}
+        placeholder="Select Subject"
+        options={subjectPickListValues}
+        onchange={handleSubjectChange}
+      >
+      </lightning-combobox>
+
+      <lightning-combobox
+        name="type"
+        label="Type"
+        value={type}
+        placeholder="Select Type"
+        options={typePickListValues}
+        onchange={handleTypeChange}
+      >
+      </lightning-combobox>
+
+      <lightning-combobox
+        name="priority"
+        label="Priority"
+        value={priority}
+        placeholder="Select Type"
+        options={priorityPickListValues}
+        onchange={handlePriorityChange}
+      >
+      </lightning-combobox>
+      <lightning-textarea
+        label="Description"
+        value={description}
+        onchange={hadleDescriptionChange}
+      ></lightning-textarea>
+      <template if:true={isVisiableUser}>
+        <c-user-combobox-lwc
+          onselecteduserid={handleChangeOwnerTask}
+        ></c-user-combobox-lwc>
+      </template>
+    </div>
+    <footer class="slds-card__footer"></footer>
+  </article>
+</template>
