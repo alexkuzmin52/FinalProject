@@ -60,7 +60,12 @@
         onchange={handleSubjectChange}
       >
       </lightning-combobox>
-
+      <lightning-input
+        type="date"
+        name="activity"
+        label="Due Date"
+        onblur={handleActivityChange}
+      ></lightning-input>
       <lightning-combobox
         name="type"
         label="Type"

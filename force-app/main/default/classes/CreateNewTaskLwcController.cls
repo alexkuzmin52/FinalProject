@@ -2,6 +2,7 @@ public with sharing class CreateNewTaskLwcController {
   @AuraEnabled
   public static Task saveTask(
     String subject,
+    Date activity,
     String description,
     String priority,
     String type,
@@ -14,7 +15,7 @@ public with sharing class CreateNewTaskLwcController {
       tsk.Priority = priority;
       tsk.Type = type;
       tsk.OwnerId = owner;
-      tsk.ActivityDate = Date.today() + 5;
+      tsk.ActivityDate = activity;
 
       insert tsk;
       return tsk;

@@ -8,9 +8,11 @@ public with sharing class CreateNewTaskLwcControllerTest {
     String priority_test = 'Normal';
     String type_test = 'Meeting';
     String owner_test = '0057Q000002RG1XQAW';
+    Date activity_test = Date.today() + 2;
 
     CreateNewTaskLwcController.saveTask(
       subject_test,
+      activity_test,
       description_test,
       priority_test,
       type_test,

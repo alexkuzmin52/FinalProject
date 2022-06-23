@@ -9,6 +9,7 @@ export default class CreateNewTaskLwc extends LightningElement {
   @track subject;
   @track description;
   @track priority;
+  @track activity;
   @track owner = currentUserId;
 
   @track error;
@@ -55,6 +56,10 @@ export default class CreateNewTaskLwc extends LightningElement {
     this.subject = event.target.value;
   }
 
+  handleActivityChange(event) {
+    this.activity = event.target.value;
+  }
+
   handleTypeChange(event) {
     this.type = event.target.value;
   }
@@ -74,6 +79,7 @@ export default class CreateNewTaskLwc extends LightningElement {
   addTask() {
     saveTask({
       subject: this.subject,
+      activity: this.activity,
       description: this.description,
       priority: this.priority,
       type: this.type,
