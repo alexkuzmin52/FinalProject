@@ -66,6 +66,9 @@
             <th class="" scope="col">
               <div class="slds-truncate" title="Status">Status</div>
             </th>
+            <th class="" scope="col">
+              <div class="slds-truncate" title="Status">Details</div>
+            </th>
           </tr>
         </thead>
 
@@ -74,7 +77,13 @@
             <tr key={tsk.Id} class="slds-hint-parent">
               <th scope="row">
                 <div class="slds-truncate" title="From User">
-                  <a href="#" tabindex="-1">{tsk.UserCreated__c}</a>
+                  <a
+                    href="#"
+                    tabindex="-1"
+                    data-recordid={tsk.CreatedById}
+                    onclick={handleClickOwnerId}
+                    >{tsk.UserCreated__c}</a
+                  >
                 </div>
               </th>
               <td role="gridcell">
@@ -92,6 +101,17 @@
               </td>
               <td role="gridcell">
                 <div class="slds-truncate" title="Status">{tsk.Status}</div>
+              </td>
+              <td role="gridcell">
+                <div class="slds-truncate" title="Details">
+                  <a
+                    href="#"
+                    tabindex="-1"
+                    data-recordid={tsk.Id}
+                    onclick={handleClickTaskId}
+                    >Detail</a
+                  >
+                </div>
               </td>
             </tr>
           </template>

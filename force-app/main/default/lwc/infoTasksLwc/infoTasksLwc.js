@@ -1,12 +1,15 @@
 import { LightningElement, track } from "lwc";
 import currentUserId from "@salesforce/user/Id";
 import getFilteredTasks from "@salesforce/apex/InfoTasksLwcController.getFilteredTasks";
+import { NavigationMixin } from "lightning/navigation";
 
-export default class InfoTasksLwc extends LightningElement {
+export default class InfoTasksLwc extends NavigationMixin(LightningElement) {
   @track filterDate = "all";
   @track myTasks = [];
   @track taskListSize;
   @track owner = currentUserId;
+  @track ownerLink;
+  @track taskLink;
 
   @track options = [
     { label: "All", value: "all" },
@@ -66,5 +69,38 @@ export default class InfoTasksLwc extends LightningElement {
     console.log(value);
     this.owner = value;
     this.onChangeFilterDate();
+  }
+
+  navigateToUserPage() {
+    this[NavigationMixin.Navigate]({
+      type: "standard__recordPage",
+      attributes: {
+        recordId: this.ownerLink,
+        objectApiName: "User",
+        actionName: "view"
+      }
+    });
+  }
+
+  navigateToTackPage() {
+    this[NavigationMixin.Navigate]({
+      type: "standard__recordPage",
+      attributes: {
+        recordId: this.taskLink,
+        objectApiName: "Task",
+        actionName: "view"
+      }
+    });
+  }
+
+  handleClickOwnerId(event) {
+    this.ownerLink = event.currentTarget.dataset.recordid;
+    console.log(this.ownerLink);
+    this.navigateToUserPage();
+  }
+
+  handleClickTaskId(event) {
+    this.taskLink = event.currentTarget.dataset.recordid;
+    this.navigateToTackPage();
   }
 }

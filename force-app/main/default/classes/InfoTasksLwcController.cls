@@ -7,7 +7,7 @@ public with sharing class InfoTasksLwcController {
       String queryString =
         'SELECT Id, OwnerId, Priority, ActivityDate,' +
         ' Description, Status, UserCreated__c, DateCreated__c,' +
-        ' UserIdCreated__c FROM Task WHERE OwnerId= :targetUser';
+        ' CreatedById FROM Task WHERE OwnerId= :targetUser';
 
       if (filter != 'all') {
         queryString = queryString + baseFilter + filter;
